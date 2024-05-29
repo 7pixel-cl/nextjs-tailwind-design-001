@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+message="$(cat $1)"
+if ! echo "$message" | grep -Eq "^(build|chore|ci|docs|feat|hotfix|fix|perf|refactor|revert|style|test|wip)(\([A-Z]+-[0-9]+\))?:.*$";
+then
+  echo "🚨 The commit message does not meet the Conventional Commit standard! 😕"
+  echo ""
+  echo "Your commit message was:"
+  echo "  $message"
+  echo ""
+  echo "An example of a valid message is: "
+  echo "  feat(JVA-1234): add the 'remember me' button"
+  echo ""
+  echo "More details at: https://www.conventionalcommits.org/en/v1.0.0/#summary"
+  echo "***********************************************************************"
+  echo "Here are the  list of message type : (build|chore|ci|docs|feat|hotfix|fix|perf|refactor|revert|style|test|wip)"
+  echo "  <type>: <subject> max 50char ex :- fix: invalid request for login api"
+  echo "  <type(<scope>):> <subject> (Max 50 char) - <scope> is option ex: - fix(JVA-1234): email address is empty on profile api"
+  echo "***********************************************************************"
+  echo "-"
+  exit 1
+fi

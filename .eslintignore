@@ -1,0 +1,7 @@
+storybook-static
+/build
+/node_modules
+*.css
+*.json
+*.test.ts
+*.test.tsx
